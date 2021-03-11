@@ -1,0 +1,229 @@
+.wrapper {
+  width: 980px;
+  margin: 0 auto;
+  padding-bottom: 120px; /*←footerの高さ*/
+}
+
+header {
+  background-image: url("../img/headerimage.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 232px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  letter-spacing: 10px;
+  font-size:2.5rem;
+  color:rgb(255, 153, 170);
+}
+h2{
+  color: #ffffff;
+}
+footer {
+  background-image: url("../img/footerimage.png");
+  position: fixed;
+  bottom: 0; /*下に固定*/
+  height: 150px;
+  width: 100%;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+}
+.mainConteainer {
+  display: flex;
+}
+.inputArea {
+  width: 50%;
+  padding: 10px;
+}
+
+.diaryArea {
+  width: 50%;
+  padding: 10px;
+}
+/* 質問の項目 */
+.formItem {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.formItem2 {
+  padding: 5px 0;
+}
+textarea#text {
+  margin-left: 15px;
+}
+
+/* 質問項目 */
+.questionName {
+  margin-right: 20px;
+  width: 120px;
+  border-left: solid 5px #e0505d;
+  padding-left: 10px;
+}
+input[type="date"],
+input[type="text"],
+input[type="number"],
+textarea {
+  border: solid 1px #e0e0e0;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+input[type="number"] {
+  width: 60px;
+}
+
+form {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5%;
+  border: #e0e0e0;
+  color: #ffffff;
+}
+
+#send {
+  font-size: 18 px;
+  background: #ff9dba;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#ffa8ec),
+    to(hsl(325, 100%, 64%))
+  );
+  background: -webkit-linear-gradient(top, #ff9dba 0%, #ff589d 100%);
+  background: linear-gradient(to #ff9dba 0%, #ff589d 100%);
+}
+
+#send:hover {
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#ec67f1),
+    to(#ff3582)
+  );
+  background: -webkit-linear-gradient(bottom, #ff9dba 0%, #ff589d 100%);
+  background: linear-gradient(to top, #ff9dba 0%, #ff589d 100%);
+}
+
+#cancel {
+  background-color: #c0c0c7;
+}
+h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  background-color: lightpink;
+  border: solid lightpink;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: lighter;
+}
+
+.inputItem {
+  background-color: #ffd7dd;
+  border: solid #ffd7dd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+
+/* 右側　日記の部分 */
+.diaryItem {
+  background-color: #e0e0e0f6;
+  border: solid #e0e0e0f6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+/* 受信処理の部分 */
+.vpostDay {
+  color: lightseagreen;
+  background-color: white;
+  border-radius: 5%;
+  padding: 5px;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0 40px 0 18px; 
+  box-sizing: border-box;
+}
+
+.vpostDay:after {
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.vpostDay:after {
+  top: 0;
+  right: 0;
+  border-width: 20px 15px 20px 0px;
+  border-color: transparent #e0e0e0f6; transparent transparent;
+  border-style: solid;
+}
+
+.vtextarea{
+  background-color: rgba(255, 255, 255, 0.5);
+  padding:10px;
+
+}
+
+/* ログイン認証の部分 */
+p#user-para {
+  display:inline;
+  
+}
+
+#login{width:300px;
+  margin:0 auto;
+  height:100vh;
+  text-align:center;
+  padding-top:100px;
+
+}
+#login h3{
+  font-size:2rem;
+}
+#login> input{
+
+  display: block;
+  line-height: 3em;
+  border:1px solid gray;
+  border-radius:5px;
+  padding:10px;
+  margin:0 auto 20px;
+  width: 80%;
+   
+}
+
+#login> button,.username>button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5%;
+  border: #e0e0e0;
+  color: #ffffff;
+  background-color: #4fb6d8;
+}
+.username {
+  text-align: right;
+}

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>課題　日記アプリ</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- ブラウザの画面に見える内容 -->
+    <!-- ログイン認証部分 -->
+    <div id="login">
+      <h3>Welcome!</h3>
+        <input id="txtEmail" type="email" placeholder="Email" />
+  
+        <input id="txtPassword" type="password" placeholder="Password" />
+  
+        <button id="btnLogin" class="btn btn-action">ログイン</button>
+        <button id="btnSinUp" class="btn btn-secondary">新規登録</button>
+
+    </div>
+    <div class="wrapper" id="user">
+      <div class="username">
+      <p id="user-para"></p>
+      <button id="btnLogout" class="btn btn-action hide">Log Out</button>
+    </div>
+      <header>
+        <h1>子育て日記</h1>
+      </header>
+      <div class="mainConteainer">
+        <div class="inputArea">
+          <h2>ここに入力してね</h2>
+          <div class="inputItem">
+            <form>
+
+              <!-- 日付の入力 -->
+              <div class="formItem">
+              <p class="questionName">入力日</p>
+              <div class="answer">
+              <input
+                type="date"
+                id="postDay"
+                name=""
+                value=""
+                min="2021-01-01"
+                max="2025-12-31"
+              /></div>
+              </div>
+            <!-- 朝の体温 -->
+            <div class="formItem">
+              <p class="questionName">朝の体温</p>
+              <input type="number" id="bodyTemp" class="answer" value="36.5" step="0.1"/>℃
+              </div>
+            <!-- 睡眠 -->
+            <div class="formItem">
+            <p class="questionName">睡眠</p>
+            <div id="sleep" class="answer">
+              <label><input
+                  type="radio"
+                  name="sleep"
+                  value="良く寝た"
+                  class="sleep" checked
+                />良く寝た</label>
+              <label><input
+                  type="radio"
+                  name="sleep"
+                  value="眠りが浅い"
+                  class="sleep"
+                />眠りが浅い</label>
+            </div>
+            </div>
+            <!-- 食欲 -->
+            <div class="formItem">
+            <p class="questionName">食欲</p>
+            <div class="answer">
+            <label
+              ><input
+                type="radio"
+                name="eat"
+                value="よく食べた"
+                class="eat"checked
+              />良く食べた</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="eat"
+                value="普通"
+                class="eat"
+              />普通</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="eat"
+                value="少ない"
+                class="eat"
+              />少ない</label
+            >
+          </div>
+          </div>
+
+            <!-- 排便 -->
+            <div class="formItem">
+            <p class="questionName">排便</p>
+            <div class="answer">
+            <label
+              ><input
+                type="radio"
+                name="defecation"
+                value="あり普通"
+                class="defecation"checked
+
+              />あり普通</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="defecation"
+                value="下痢"
+                class="defecation"
+              />下痢</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="defecation"
+                value="硬い"
+                class="defecation"
+              />硬い</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="defecation"
+                value="なし"
+                class="defecation"
+              />なし</label
+            ></div>
+          </div>
+            <!-- テキストエリア -->
+            <div class="formItem2">
+              <p class="questionName">今日のできごと</p>
+              <div class="answer">
+              <textarea
+                name=""
+                id="text"
+                cols="50"
+                rows="15"
+                placeholder="今日のできごとなどのコメントはここに入力"
+              ></textarea>
+                </div>
+              </div>
+            <!-- 画像のアップロードエリア -->
+            <div class="formItem">
+              <p class="questionName">今日の写真</p>
+              <input type="file" value="upload" id="photoButton" />
+              <img id="photoPreview" width="100px;" />
+            </div>
+          </div>
+          
+        </form>
+          <!-- / .inputItem-->
+          <div>
+            <!-- 送信ボタン -->
+            <!-- <button type="“button”" onclick="location.href='soushin.html'">
+      遷移！
+    </button>
+    うえがテスト　下が授業 -->
+
+            <button id="send">登録する</button>
+            <button id="cancel">キャンセル</button>
+          </div>
+        </div>
+
+        <!-- /inputArea -->
+        <div class="diaryArea">
+          <div>
+            <!-- 保存されたデータが表示される箇所 -->
+            <div id="output"></div>
+
+            <div id="imageOutpu"></div>
+          </div>
+        </div>
+        <!-- /diaryArea -->
+      </div>
+      <!--/.mainConteainer -->
+    </div>
+    <!--/.wrapper  -->
+    <div class="footerbk">
+      <footer><p>kosodatenikki</p>
+      </footer>
+    </div>
+
+    <!--/ ブラウザの画面に見える内容 -->
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--** 以下Firebase **-->
+
+    <!-- ここにfirebaseのscriptを貼り付ける -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    databaseURL: "",
+  };
+
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      //firebaseのデーターベース（保存させる場所）を使いますよと言うjsのコードを貼り付ける
+      const newPostRef = firebase.database().ref();
+
+      // ここから下にjqueryの処理をく
+
+ 
+      // ////////////////////////
+      // ログイン認証トライ
+      /////////////////////////////////
+  // Get element
+    const txtEmail=document.getElementById("txtEmail");
+    const txtPassword=document.getElementById("txtPassword");
+    const btnLogin=document.getElementById("btnLogin");
+    const btnSinUp=document.getElementById("btnSinUp");
+    const btnLogout=document.getElementById("btnLogout");
+  
+
+    //  新規登録のイベント処理
+    btnSinUp.addEventListener("click" ,function(e){
+      let email=txtEmail.value;
+      let pass=txtPassword.value;
+      let auth=firebase.auth();
+    // 新規登録
+    let promise=auth.createUserWithEmailAndPassword(email,pass);
+    promise.catch(e =>console.log(e.message));
+    });
+
+// 現在ログインしているユーザーを取得する
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    document.getElementById("user").style.display="block";
+    document.getElementById("login").style.display="none";
+
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+      var email_id=user.email;
+      document.getElementById("user-para").innerHTML="こんにちは！"+ email_id +"さん";
+    }
+
+  } else {
+    // No user is signed in.
+    document.getElementById("user").style.display="none";
+    document.getElementById("login").style.display="block";
+
+  }
+});
+
+
+  //ログインのイベント処理
+  btnLogin.addEventListener("click",function(e){
+    let email=txtEmail.value;
+    let pass=txtPassword.value;
+    // alert(email+" "+pass);
+    //メールアドレスとパスワードを使用してユーザーのログインを行う
+
+    firebase.auth().signInWithEmailAndPassword(email, pass)
+  .then((user) => {
+    // Signed in
+    // ...
+    })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert("エラー:" + errorMessage);
+    });
+  });
+
+
+  // ログアウトのイベント処理
+  btnLogout.addEventListener("click",function(e){
+    firebase.auth().signOut().then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+
+  });
+
+/////////////////////////////
+///画像のアップロードトライ
+//////////////////////////
+      //  写真部分のうごき
+      $("#photoButton").on("change", function (p) {
+        // ファイルのブラウザ上でのURLを取得する
+        var file = p.target.files[0];
+        // プレビュー表示これは見た目で確認用。img要素に表示
+        var blobUrl = window.URL.createObjectURL(file);
+        $("#photoPreview").attr("src", blobUrl);
+        console.log(file, "選択した画像ファイル");
+      });
+
+
+      // firebaseのストレージに画像を保存させますよ
+      var storageRef = firebase.storage().ref();
+
+  
+        // var photoUp=document.getElementById("photoButton");
+        // photoUp.addEventListener("change",function(p){
+        //   var file=p.target.files[0];
+        //   var storageRef=firebase.storage().ref("photos/" + file.name);
+        //   storageRef.put(file)
+        // })
+
+
+
+   // $("#send").on("click", function () {
+      //   let files=document.getElementById("photoButton").files;
+      //   var image=files[0];
+      //   var ref=firebase.storage().ref().Child(image.name);
+      //   ref.put(image).then(function(photograph){
+      //     alert("アップロードしました")
+      //   })
+      // });
+
+   
+
+      // 送信ボタンをクリックされたら次の処理をする
+      $("#send").on("click", function () {
+        // データを登録で送る;
+        newPostRef.push({
+          //日付
+          postDay: $("#postDay").val(),
+          // 体温
+          bodyTemp: $("#bodyTemp").val(),
+          // // 睡眠
+          sleep: $('input[name="sleep"]:checked').val(),
+          // // 食欲
+          eat: $('input[name="eat"]:checked').val(),
+          // // 排便
+          defecation: $('input[name="defecation"]:checked').val(),
+
+          //テキストエリア
+          text: $("#text").val(),
+        });
+
+        // // 文字を空にする
+        $("#postDay").val(""); //空にする
+        $("#bodyTemp").val(""); //空にする
+        $('input[name="sleep"]:checked').val(""); //空にする
+        $('input[name="eat"]:checked').val(""); //空にする
+        $('input[name="defecation"]:checked').val(""); //空にする
+        $("#text").val(""); //空にする
+      });
+
+      // キャンセルボタンをクリックした時の処理
+
+      $("#cancel").on("click", function () {
+        // 文字を空にする
+        $("#postDay").val(""); //空にする
+        $("#bodyTemp").val(""); //空にする
+        $('input[name="sleep"]:checked').val(""); //空にする
+        $('input[name="eat"]:checked').val(""); //空にする
+        $('input[name="defecation"]:checked').val(""); //空にする
+        $("#text").val(""); //空にする
+      });
+
+      // 受信処理
+      newPostRef.on("child_added", function (data) {
+        //ここに保存されたデータが全て入ってくる
+        // function (data)のdataにfirebaseのデータが入ってくる
+        let v = data.val();
+        // let k = data.key; //今回は使いません
+
+        //console.logで受信=firebaseに登録されている中身を確認しよう！
+        console.log(v, "firebaseのデータが入ってきます！");
+        //テンプレートリテラル `` を活用して変数にhtmlを埋め込もう！
+        let str = `<div class="diaryItem">
+          <div class="ribbon"> <p class="vpostDay">${v.postDay}</p></div>
+                 <p> ${v.bodyTemp} ℃<br>
+                  <img src="img/sleep.png" alt="睡眠">：${v.sleep} 
+                  <img src="img/eat.png" alt="食欲">：${v.eat}
+                  <img src="img/ben.png" alt="排便"> ：${v.defecation} </p>
+                  <p class="vtextarea">
+                  ${v.text}</p></div>`;
+
+        // ここでデータをhtmlに埋め込む prependには変数を埋め込もう！
+        $("#output").prepend(str);
+      });
+
+      $("xxx").on("keydown", function (event) {
+        // eventの中身をconsole.logでみてみよう！
+      });
+    </script>
+  </body>
+</html>
